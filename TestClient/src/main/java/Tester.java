@@ -1,4 +1,6 @@
 import org.aiden.lab.microserv.demo.HelloWorldService;
+import org.aiden.lab.microserve.calculator.CalculatorService;
+import org.aiden.lab.microserve.calculator.Result;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
@@ -27,10 +29,10 @@ public class Tester {
             transport = new TSocket(SERVER_IP, SERVER_PORT, TIMEOUT);
             // 协议要和服务端一致
             TProtocol protocol = new TBinaryProtocol(transport);
-            HelloWorldService.Client client = new HelloWorldService.Client(
+            CalculatorService.Client client = new CalculatorService.Client(
                     protocol);
             transport.open();
-            String result = client.sayHello(userName);
+            Result result = client.add(1, 2);
             System.out.println("Thrify client result =: " + result);
         } catch (TTransportException e) {
             e.printStackTrace();

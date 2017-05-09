@@ -1,27 +1,27 @@
 package server;
 
-import org.aiden.lab.microserv.demo.HelloWorldService;
+import org.aiden.lab.microserve.calculator.CalculatorService;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
-import service.HelloWorldImpl;
+import service.CalculatorServiceImpl;
 
 /**
- * Created by zhangzhe on 2017/5/5.
+ * Created by zhangzhe on 2017/5/9.
  */
-public class HelloServer {
+public class CalculatorServer {
 
     public static final int SERVER_PORT = 9000;
 
     public void startServer() {
         try {
-            System.out.println("HelloWorld TSimpleServer start ....");
+            System.out.println("CalculatorService TSimpleServer start ....");
 
             TProcessor tprocessor =
-                    new HelloWorldService.Processor<HelloWorldService.Iface>
-                            (new HelloWorldImpl());
+                    new CalculatorService.Processor<CalculatorService.Iface>
+                            (new CalculatorServiceImpl());
             TServerSocket serverTransport = new TServerSocket(SERVER_PORT);
             TServer.Args tArgs = new TServer.Args(serverTransport);
             tArgs.processor(tprocessor);
@@ -34,11 +34,8 @@ public class HelloServer {
         }
     }
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
-        HelloServer server = new HelloServer();
+        CalculatorServer server = new CalculatorServer();
         server.startServer();
     }
 
