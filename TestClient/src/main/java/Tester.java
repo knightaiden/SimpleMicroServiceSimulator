@@ -1,4 +1,3 @@
-import org.aiden.lab.microserv.demo.HelloWorldService;
 import org.aiden.lab.microserve.calculator.CalculatorService;
 import org.aiden.lab.microserve.calculator.Result;
 import org.apache.thrift.TException;
@@ -7,8 +6,6 @@ import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
-
-import java.math.BigDecimal;
 
 /**
  * Created by zhangzhe on 2017/5/5.
@@ -27,7 +24,6 @@ public class Tester {
         TTransport transport = null;
         try {
             transport = new TSocket(SERVER_IP, SERVER_PORT, TIMEOUT);
-            // 协议要和服务端一致
             TProtocol protocol = new TBinaryProtocol(transport);
             CalculatorService.Client client = new CalculatorService.Client(
                     protocol);
