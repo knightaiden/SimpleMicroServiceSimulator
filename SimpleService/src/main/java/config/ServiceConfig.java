@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import server.ServerLanucher;
 import service.CalculatorServiceImpl;
 
 import java.util.ArrayList;
@@ -105,7 +106,7 @@ public class ServiceConfig {
                 .build();
     }
 
-    @Bean(name = "service-instance")
+    @Bean
     public ServiceInstance<ServiceDetails> serviceInstance() throws Exception {
         ServiceInstanceBuilder<ServiceDetails> instance = ServiceInstance.builder();
         instance.name(env.getProperty("rpc.server.service.name"))
@@ -126,6 +127,17 @@ public class ServiceConfig {
                 .basePath(env.getProperty("rpc.server.service.path"))
                 .serializer(new JsonInstanceSerializer(ServiceDetails.class))
                 .thisInstance(this.serviceInstance()).build();
+    }
+
+    @Bean(destroyMethod="stop")
+    public ServerLanucher serverLanucher(ServiceDiscovery serviceDiscovery,
+                                         CuratorFramework curatorFramework,
+                                         TServer calculatorTServer){
+        ServerLanucher lanucher = new ServerLanucher();
+        lanucher.setDiscovery(serviceDiscovery);
+        lanucher.setFramework(curatorFramework);
+        lanucher.settServer(calculatorTServer);
+        return lanucher;
     }
 
 }

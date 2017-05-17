@@ -13,11 +13,43 @@
     <artifactId>TestClient</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <properties>
+        <spring.version>4.3.8.RELEASE</spring.version>
+        <curator.version>2.11.1</curator.version>
+        <spring.boot.version>1.4.6.RELEASE</spring.boot.version>
+        <slf4j.version>1.7.21</slf4j.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.aiden.lab</groupId>
             <artifactId>ServiceSDK</artifactId>
             <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aiden.lab</groupId>
+            <artifactId>SimpleService</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-client</artifactId>
+            <version>${curator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-x-discovery</artifactId>
+            <version>${curator.version}</version>
         </dependency>
     </dependencies>
 
