@@ -14,8 +14,10 @@ import org.apache.curator.x.discovery.details.JsonInstanceSerializer;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TSimpleServer;
-import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.server.TThreadPoolServer;
+import org.apache.thrift.server.TThreadedSelectorServer;
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TNonblockingServerSocket;
 import org.apache.thrift.transport.TTransportException;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.data.ACL;
@@ -49,16 +51,24 @@ public class ServiceConfig {
         return serviceDetails;
     }
 
+    /**
+     * 4 option for the TServer(exclude the TSampleServer)
+     * 1. TNonblockingServer -  Single thread, NIO for all the socket in selector
+     * 2. THsHaServer - TNonblockingServer with thread pool
+     * 3. TThreadPoolServer - Blocking socket, the main thread used for listen the socket
+     * 4. TThreadedSelectorServer - Advanced usage, recommended !
+     */
     @Bean
     public TServer calculatorTServer() throws TTransportException {
         TProcessor tprocessor =
                 new CalculatorService.Processor<CalculatorService.Iface>
                         (new CalculatorServiceImpl());
-        TServerSocket serverTransport = new TServerSocket(SERVER_PORT);
-        TServer.Args tArgs = new TServer.Args(serverTransport);
+        TNonblockingServerSocket serverTransport = new TNonblockingServerSocket(SERVER_PORT);
+        TThreadPoolServer.Args tArgs = new TThreadPoolServer.Args(serverTransport);
         tArgs.processor(tprocessor);
         tArgs.protocolFactory(new TBinaryProtocol.Factory());
-        TServer server = new TSimpleServer(tArgs);
+        //tArgs.transportFactory(new TFramedTransport.Factory());
+        TServer server = new TThreadPoolServer(tArgs);
         return server;
     }
 
