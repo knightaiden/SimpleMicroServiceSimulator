@@ -1,8 +1,7 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+package org.aiden.lab.microserv.sample;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import server.ServerLanucher;
 
 /**
  * Created by zhangzhe on 2017/5/9.

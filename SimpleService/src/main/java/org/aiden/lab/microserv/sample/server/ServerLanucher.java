@@ -1,9 +1,10 @@
-package server;
+package org.aiden.lab.microserv.sample.server;
 
-import entity.ServiceDetails;
+import org.aiden.lab.microserv.sample.entity.ServiceDetails;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.x.discovery.ServiceDiscovery;
 import org.apache.thrift.server.TServer;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 

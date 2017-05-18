@@ -1,6 +1,7 @@
-package config;
+package org.aiden.lab.microserv.sample.config;
 
-import entity.ServiceDetails;
+import org.aiden.lab.microserv.sample.entity.ServiceDetails;
+import org.aiden.lab.microserv.sample.service.CalculatorServiceImpl;
 import org.aiden.lab.microserve.calculator.CalculatorService;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.AuthInfo;
@@ -22,8 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import server.ServerLanucher;
-import service.CalculatorServiceImpl;
+import org.aiden.lab.microserv.sample.server.ServerLanucher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,12 @@ public class ServiceConfig {
 
 
     public ServiceDetails payload(){
-        return new ServiceDetails();
+        ServiceDetails serviceDetails = new ServiceDetails();
+        serviceDetails.setId("1");
+        serviceDetails.setInterfaceName("cal1");
+        serviceDetails.setListenAddress("localhost");
+        serviceDetails.setListenPort(SERVER_PORT);
+        return serviceDetails;
     }
 
     @Bean

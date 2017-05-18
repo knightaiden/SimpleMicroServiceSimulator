@@ -7,7 +7,7 @@ struct Result {
     2: bool isCorrect,
 }
 
-service CalculatorService {
+org.aiden.lab.micorserv.sample.service CalculatorService {
 
     Result add(1:double first, 2:double second),
     Result minus(1:double first, 2:double second),

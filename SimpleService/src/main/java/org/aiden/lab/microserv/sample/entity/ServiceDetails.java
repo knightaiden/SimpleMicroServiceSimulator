@@ -1,4 +1,4 @@
-package entity;
+package org.aiden.lab.microserv.sample.entity;
 
 /**
  * Created by zhangzhe on 2017/5/9.

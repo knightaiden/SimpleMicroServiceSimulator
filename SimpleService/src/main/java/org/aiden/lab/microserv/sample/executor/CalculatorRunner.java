@@ -1,9 +1,9 @@
-package executor;
+package org.aiden.lab.microserv.sample.executor;
 
+import org.aiden.lab.microserv.sample.server.ServerLanucher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import server.ServerLanucher;
 
 /**
  * Created by zhangzhe on 2017/5/17.

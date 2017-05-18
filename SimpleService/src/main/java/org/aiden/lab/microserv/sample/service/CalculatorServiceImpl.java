@@ -1,4 +1,4 @@
-package service;
+package org.aiden.lab.microserv.sample.service;
 
 import org.aiden.lab.microserve.calculator.CalculatorService;
 import org.aiden.lab.microserve.calculator.Result;

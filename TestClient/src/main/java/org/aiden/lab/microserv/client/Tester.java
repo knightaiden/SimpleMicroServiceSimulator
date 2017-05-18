@@ -1,3 +1,5 @@
+package org.aiden.lab.microserv.client;
+
 import org.aiden.lab.microserve.calculator.CalculatorService;
 import org.aiden.lab.microserve.calculator.Result;
 import org.apache.thrift.TException;
